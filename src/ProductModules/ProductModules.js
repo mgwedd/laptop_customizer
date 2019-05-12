@@ -1,5 +1,4 @@
 import React from 'react';
-import Feature from '../Feature/Feature';
 import FeatureCategory from '../FeatureCategory/FeatureCategory';
 
 export default function ProductModules(props) {
@@ -20,28 +19,18 @@ export default function ProductModules(props) {
     // function getAFeature(category) {
     //     // returns a single feature (LOW LEVEL) (this is <FEATURE>)
     // }
+    // { features } = props.features;
     return (
         Object.keys(props.features)
-        .map(featureCategory => {
-          const options = props.features[featureCategory]
-              .map((item, index) => {
-              const selectedClass = item.name === props.selected[featureCategory].name ? 'feature__selected' : '';
-              const featureClass = 'feature__option ' + selectedClass;
-              return <Feature 
-                          key={index}
-                          updateFeature={props.updateFeature}
-                          featureObj={item}
-                          featureClass={featureClass}
-                          featureName={item.name}
-                          featureCost={item.cost}
-                          featureCategory={featureCategory} />
-              });
-
-          return <FeatureCategory
-                      categoryName={ featureCategory }
-                      featureOptions={ options } />
-          
-          
+        .map((featureCategory, index) => {
+            return <FeatureCategory
+                        key={ index }
+                        categoryName={ featureCategory }
+                        availableFeatures={ props.features[featureCategory] }
+                        selected={ props.selected }
+                        updateFeatureSelection={ props.updateFeatureSelection } 
+                        handleFeatureSelectionClass={ props.handleFeatureSelectionClass }/>          
         })
     );
 }
+

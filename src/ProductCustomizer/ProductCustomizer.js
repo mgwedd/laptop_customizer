@@ -9,7 +9,8 @@ export default function ProductCustomizer( props ) {
             <ProductModules 
                 features={ props.features }
                 selected={ props.selected }
-                updateFeature={ props.updateFeature } />
+                updateFeatureSelection={ props.updateFeatureSelection }
+                handleFeatureSelectionClass={ props.handleFeatureSelectionClass } />
         </section>
     );
 }

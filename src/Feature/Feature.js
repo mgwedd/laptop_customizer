@@ -8,7 +8,7 @@ export default function Feature(props) {
         <li key={ uuidv1() } className="feature__item">
             <div 
                 className={props.featureClass}
-                onClick={e => props.updateFeature(props.featureCategory, props.featureObj)}>
+                onClick={e => props.updateFeatureSelection(props.featureCategory, props.featureObj)}>
                 { props.featureName }
                 ({ new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'})
                 .format(props.featureCost) })

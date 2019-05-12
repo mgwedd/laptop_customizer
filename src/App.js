@@ -28,12 +28,21 @@ export default class App extends Component {
     }
   }
 
-  updateFeature(feature, newValue) {
+  updateFeatureSelection = ( feature, newValue ) => {
     const selected = Object.assign({}, this.state.selected);
     selected[feature] = newValue;
     this.setState({
       selected
     });
+  }
+  
+  handleFeatureSelectionClass = ( featureName, featureSelected ) => {
+    const featureClass = 'featureClass';
+    if ( featureName === featureSelected ) {
+        return featureClass + ' feature__selected';
+    } else {
+        return featureClass;
+    }
   }
 
   render() {
@@ -57,7 +66,8 @@ export default class App extends Component {
           <ProductCustomizer 
             features={ this.props.features } 
             selected={ this.state.selected }
-            updateFeature={ (feature, newValue ) => this.updateFeature( feature, newValue ) }/>
+            handleFeatureSelectionClass={this.handleFeatureSelectionClass}
+            updateFeatureSelection={this.updateFeatureSelection}/>
           <section className="main__summary">
             <h3>NEW GREENLEAF 2018</h3>
             {summary}
