@@ -1,23 +1,25 @@
 import React from 'react';
 import Feature from '../Feature/Feature'
+import './FeatureCategory.css'
 
 export default function FeatureCategory(props) {
-    const availableFeatures = props.availableFeatures
-                        .map((feature, index) => {
-                        return <Feature 
+  const { availableFeatures, updateFeatureSelection, selected, handleFeatureSelectionClass, categoryName } = props;
+    const featuresForCategory = availableFeatures
+                                .map((feature, index) => {
+                                  return <Feature 
                                     key={index}
-                                    updateFeatureSelection={props.updateFeatureSelection}
+                                    updateFeatureSelection={updateFeatureSelection}
                                     featureObj={feature}
-                                    featureClass={ props.handleFeatureSelectionClass ( feature.name, props.selected[props.categoryName].name ) }
+                                    featureClass={ handleFeatureSelectionClass( feature.name, selected[ categoryName ].name ) }
                                     featureName={feature.name}
                                     featureCost={feature.cost}
-                                    featureCategory={props.categoryName} />
-                        });
+                                    featureCategory={categoryName} />
+                                });
     return (
-        <div className="feature" key={props.categoryName}>
-              <div className="feature__name">{props.categoryName}</div>
+        <div className="feature" key={ categoryName }>
+              <div className="feature__name">{ categoryName }</div>
               <ul className="feature__list">
-                { availableFeatures }
+                { featuresForCategory }
               </ul>
         </div>
     );

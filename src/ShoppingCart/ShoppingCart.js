@@ -1,11 +1,13 @@
 import React from 'react';
 import CartSummary from '../CartSummary/CartSummary'
+import './ShoppingCart.css';
 
 export default function ShoppingCart( props ) {
     const { selectedFeatures } = props;
  
     const total = Object.keys( selectedFeatures )
-        .reduce((acc, curr) => acc + selectedFeatures[ curr ].cost, 0);  
+        .reduce((acc, curr) => acc + selectedFeatures[ curr ].cost, 0); 
+         
     return (
         <section className="main__summary">
             <h3>NEW GREENLEAF 2018</h3>
